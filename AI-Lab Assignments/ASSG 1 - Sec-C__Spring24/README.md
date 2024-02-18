@@ -69,5 +69,27 @@
 > Print the path and cost
 >
 
+# Given code:
+```python
+
+adjacency_list = {
+    'S': [('A', 1), ('B', 4)],
+    'A': [('B', 2), ('C', 5), ('G', 12)],
+    'B': [('C', 2)],
+    'C': [('D', 2), ('G', 3)],
+    'D': [('G', 2), ('A', 2)],
+    'G': [('C', 4)]
+}
+
+H = {
+    'S': 7,
+    'A': 6,
+    'B': 2,
+    'C': 1,
+    'D': 1,
+    'G': 0
+}
+
+```
 
 # Solution : [LINK](https://github.com/TashinParvez/Artificial-Intelligence-UIU/blob/master/AI-Lab%20Assignments/ASSG%201%20-%20Sec-C__Spring24/011221437.py)
