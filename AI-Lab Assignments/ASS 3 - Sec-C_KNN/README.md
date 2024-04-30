@@ -1,95 +1,56 @@
-# A* Search Assignment
+# k-nearest neighbors (KNN) 
 
-## Part 1
+## Load Dataset
+Load iris.csv to two separate numpy arrays X, y
 
-> ### Graph Data Structure
-> Keep a dictionary of the adjacent list as, **adjacency_list**:
-> 
-> Nodename as key, value as list of tuples
-> 
-> Keep another dictionary as **H**:
-> 	Nodename as key, heuristic value as value
+Load features into X [sepal.length, sepal.width, petal.length, petal.width]
 
-## Part 2
+Load labels into y [0,1]
 
-> ### Node Class
-> Write a python class named **Node** with the following attributes:
-> nodename : **String**
-> 
-> - **parent** : **Node**
-> 
-> - **g** : **float**
-> 
-> - **h** : **float**
-> 
-> - **f** : **float**
-> 
-> Add a constructor that takes four parameters(**nodename**, **parent**, **g**, **h**) to initialize the attributes
 
-## Part 3
+## Shuffling
+Randomize X and corresponding y simultaneously
 
-> ### A* Search & Solution Finding
-> Create an empty list name priority_queue
-> 
-> Create a Node object, NOb of the “S” node with (**nodename**: ‘S’, parent: **None**, g: 0, h: **H**[‘S’]) and
-> Insert the node in priority_queue
-> 
-> Now inside a while loop:
 
+## Train Test Split
+X_train = first 80% of X
+y_train = first 80% of y
+X_test = rest X
+y_test = rest y
+
+## Algorithm [Test Prediction]
 ```
- while priority_queue is not empty:
- 
- 	Find out the Node object in priority_queue with the minimum value of f
- 
- 	Extract it from the priority_queue and store it in NOb
- 
- 	If NOb.nodename == ‘G’:
-           break
+k = 5
+X_train = (M, N) # N columns with M rows [for this case N should be 4]
 
- 	For every neighbor of NOb.nodename from adjacency_list
- 		Insert a new node in priority_queue with (nodename: neighbor_name, parent: NOb, g: NOb.g + edge_cost, h: H[NOb.nodename])
- 	Set NOb = None
+y_train = (M, 1) # 1 columns with M rows
+
+X_test = (M’, N) # N columns with M’ rows [for this case N should be 4]
+
+y_test = (M’, 1) # 1 columns with M’ rows
+```
+```
+y_test_predicted = new numpy array of size M’
+for i in range(len(X_test)):
+	x_test = X_test[i]
+	D = new numpy array of size M
+	D = Calculate euclidean distances between x_test and X_train
+	min_dist_indices  = find k indices in D where values are minimum
+	y_neighbor = y_train[ min_dist_indices ]
+	y_test_predicted[ i ] = the value that occurs most in y_neighbor 
+
+Metrics Calculation
+Calculate the accuracy by comparing y_test and y_test_predicted
+Print the accuracy (Test)
 ```
 
-## Part 4
+## Notes:
+- Pandas library for csv read and shuffling
+- Load csv into numpy array
+- shuffle two numpy arrays together
+- train test split
+- distance between two numpy arrays
+- numpy.argmin
 
-> ### Path Generation
-> path = []
-> 
-> cost = NOb.g
-> 
-> **while** NOb.parent is not None:
-> 
->> 	path.insert(**NOb**.**nodename**)
->> 
->> 	**NOb** = **NOb**.**parent**
-> 
-> **Reverse** the path list
-> 
-> Print the path and cost
->
 
-# Given code:
-```python
-
-adjacency_list = {
-    'S': [('A', 1), ('B', 4)],
-    'A': [('B', 2), ('C', 5), ('G', 12)],
-    'B': [('C', 2)],
-    'C': [('D', 2), ('G', 3)],
-    'D': [('G', 2), ('A', 2)],
-    'G': [('C', 4)]
-}
-
-H = {
-    'S': 7,
-    'A': 6,
-    'B': 2,
-    'C': 1,
-    'D': 1,
-    'G': 0
-}
-
-```
-
-# Solution : [LINK](https://github.com/TashinParvez/Artificial-Intelligence-UIU/blob/master/AI-Lab%20Assignments/ASSG%201%20-%20Sec-C__Spring24/011221437.py)
+# Solution : [LINK](https://github.com/TashinParvez/Artificial-Intelligence-UIU/blob/master/AI-Lab%20Assignments/ASS%203%20-%20Sec-C_KNN/Tashin.py)
