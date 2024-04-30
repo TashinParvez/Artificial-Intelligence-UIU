@@ -1,56 +1,135 @@
-# k-nearest neighbors (KNN) 
+# Q1. Problem: Sorting a list in ascending order with only any amount of right shift of elements 
+## Algorithm: Hill Climbing (Steepest ascent)
 
-## Load Dataset
-Load iris.csv to two separate numpy arrays X, y
-
-Load features into X [sepal.length, sepal.width, petal.length, petal.width]
-
-Load labels into y [0,1]
-
-
-## Shuffling
-Randomize X and corresponding y simultaneously
-
-
-## Train Test Split
-X_train = first 80% of X
-y_train = first 80% of y
-X_test = rest X
-y_test = rest y
-
-## Algorithm [Test Prediction]
+## Initialize():
 ```
-k = 5
-X_train = (M, N) # N columns with M rows [for this case N should be 4]
-
-y_train = (M, 1) # 1 columns with M rows
-
-X_test = (M’, N) # N columns with M’ rows [for this case N should be 4]
-
-y_test = (M’, 1) # 1 columns with M’ rows
-```
-```
-y_test_predicted = new numpy array of size M’
-for i in range(len(X_test)):
-	x_test = X_test[i]
-	D = new numpy array of size M
-	D = Calculate euclidean distances between x_test and X_train
-	min_dist_indices  = find k indices in D where values are minimum
-	y_neighbor = y_train[ min_dist_indices ]
-	y_test_predicted[ i ] = the value that occurs most in y_neighbor 
-
-Metrics Calculation
-Calculate the accuracy by comparing y_test and y_test_predicted
-Print the accuracy (Test)
+	initialize a list -> [7, 1, 9, 0, 5, 8, 4, 2, 10, 0, 20] and return it
 ```
 
-## Notes:
-- Pandas library for csv read and shuffling
-- Load csv into numpy array
-- shuffle two numpy arrays together
-- train test split
-- distance between two numpy arrays
-- numpy.argmin
+## calculate_cost(state):
+```
+Counting Inversion Problem
+for each element of the list:
+	look forward in the list and see how many elements are smaller than this element i.e. how many are in wrong order	
+Add up the number of disorders and return
 
 
-# Solution : [LINK](https://github.com/TashinParvez/Artificial-Intelligence-UIU/blob/master/AI-Lab%20Assignments/ASS%203%20-%20Sec-C_KNN/Tashin.py)
+```
+
+## generate_neighbors(current_state):
+```
+list = current_state
+neighbors = an empty list
+for each element in the list:
+	swap with the forward elements of the list with this element one by one and generate one list for each swap using a for loop.
+		new_list = newly generated state by shifting the element right n times
+		neighbors.append(new_list)
+return neighbors
+
+
+```
+
+## State_generation(current_state):
+```
+	while True:
+		current_state_cost = calculate_cost(current_state)
+		print(current_state, current_state_cost )
+		min_next_cost = INF
+		min_next_state = None
+		for each neighbor in generate_neighbors(current_state):
+			next_state = neighbor
+			next_state_cost = calculate_cost(next_state)
+			
+			if next_state_cost is smaller than min_next_cost:
+			min_next_cost = next_state_cost
+			min_next_state = next_state 
+
+# take that state which has the smallest cost
+	if min_next_cost is smaller than current_state_cost:
+		current_state = min_next_state
+	else :
+		print(“Final State:”, current_state, current_state_cost )
+		break
+
+```
+
+
+## main():
+```
+state = Initialize()
+State_generation(state)
+FINISH
+```
+
+
+# Solution : [LINK](https://github.com/TashinParvez/Artificial-Intelligence-UIU/blob/master/AI-Lab%20Assignments/ASS%202%20-%20Sec-C_Hill-Climbing/Q1.py)
+
+---
+
+# Q2. Problem: Sorting a list in ascending order with only any amount of right shift of elements 
+## Algorithm: Hill Climbing (First Choice)
+
+## Initialize():
+```
+	initialize a list -> [7, 1, 9, 0, 5, 8, 4, 2, 10, 0, 20] and return it
+```
+
+## calculate_cost(state):
+```
+Counting Inversion Problem
+for each element of the list:
+	look forward in the list and see how many elements are smaller than this element i.e. how many are in wrong order	
+Add up the number of disorders and return
+
+
+```
+
+## generate_neighbors(current_state):
+```
+list = current_state
+neighbors = an empty list
+for each element in the list:
+	swap with the forward elements of the list with this element one by one and generate one list for each swap using a for loop.
+		new_list = newly generated state by shifting the element right n times
+		neighbors.append(new_list)
+return neighbors
+
+
+```
+
+## State_generation(current_state):
+```
+while True:
+	current_state_cost = calculate_cost(current_state)
+	print(current_state, current_state_cost )
+	min_next_cost = INF
+	min_next_state = None
+	for each neighbor in generate_neighbors(current_state):
+			next_state = neighbor
+			next_state_cost = calculate_cost(next_state)
+		
+		if next_state_cost is smaller than current_state_cost :
+			min_next_cost = next_state_cost
+			min_next_state = next_state
+			break 
+	
+	# take that state which has the smallest cost
+	if min_next_cost is smaller than current_state_cost:
+		current_state = min_next_state
+	else :
+		print(“Final State:”, current_state, current_state_cost )
+	break
+
+
+```
+
+
+## main():
+```
+state = Initialize()
+State_generation(state)
+FINISH
+```
+
+
+# Solution : [LINK](https://github.com/TashinParvez/Artificial-Intelligence-UIU/blob/master/AI-Lab%20Assignments/ASS%202%20-%20Sec-C_Hill-Climbing/Q2.py)
