@@ -34,13 +34,13 @@ class Node:
 
 # Part 3
 
-priority_queue = []   # list 
+priority_queue = []   # list  
 
-def push_and_sort_priority_queue(node):  # for push and sort  
+def push_and_sort_priority_queue(node):  # for push and sort   (Function)
     priority_queue.append(node)
     priority_queue.sort(key=lambda x: x.f)
 
-
+ 
 NOb = Node('S', None, 0, H['S'])   # source Node 
 push_and_sort_priority_queue(NOb)  # insert source
 
