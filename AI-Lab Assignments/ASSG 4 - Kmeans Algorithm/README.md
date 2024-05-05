@@ -1,95 +1,54 @@
-# A* Search Assignment
+# Kmeans Algorithm Assignment
 
 ## Part 1
 
-> ### Graph Data Structure
-> Keep a dictionary of the adjacent list as, **adjacency_list**:
-> 
-> Nodename as key, value as list of tuples
-> 
-> Keep another dictionary as **H**:
-> 	Nodename as key, heuristic value as value
+```
+Load samples from “jain_feats.txt” into a 2d numpy array X. [For N samples shape should be Nx2]
+Load initial centroids from “jain_centers.txt” into another 2d numpy array centroid_old. [For two centroids shape should be 2x2]
+Take another 2d numpy array named centroid_new and initialize it with zeros. [For two centroids shape should be 2x2]
+The initial scatter plot containing X and centroid_old should look like this:
+```
+![image](https://github.com/TashinParvez/Artificial-Intelligence-UIU/assets/84122972/162c28ec-a152-44e9-b353-13d5c2edb001)
 
 ## Part 2
 
-> ### Node Class
-> Write a python class named **Node** with the following attributes:
-> nodename : **String**
-> 
-> - **parent** : **Node**
-> 
-> - **g** : **float**
-> 
-> - **h** : **float**
-> 
-> - **f** : **float**
-> 
-> Add a constructor that takes four parameters(**nodename**, **parent**, **g**, **h**) to initialize the attributes
+> Take a 1D numpy array named label with size equals to number of rows in X
+
+### Assign points to centroids/clusters:
+```
+    For each row i in X:
+        Take a 1D numpy array named dist with size equals to number of rows in centroid_old 
+        For each row j in centroid_old:
+          Assign dist[ j ] := distance between X[ i, :] and centroid_old[ j, :]
+        label[ i ] := j, for which dist[ j ] is minimum [Can easily done by numpy argmin method]
+```
+
+### Update Centroids:
+```
+    For each row j in centroid_new:
+        Assign centroid_new[ j ] := Average(X[ label == j]) [Can easily done by numpy methods]
+```
+
+### Stop condition check:
+```
+    If:
+        For each row j in centroid_new:
+	Calculate difference between centroid_new[ j ] and centroid_old[ j ]
+        If the maximum value among differences found above is less than 1E-7: STOP
+    Else: 
+        centroid_old := centroid_new
+        MOVE to next Iteration
+```
 
 ## Part 3
 
-> ### A* Search & Solution Finding
-> Create an empty list name priority_queue
-> 
-> Create a Node object, NOb of the “S” node with (**nodename**: ‘S’, parent: **None**, g: 0, h: **H**[‘S’]) and
-> Insert the node in priority_queue
-> 
-> Now inside a while loop:
-
 ```
- while priority_queue is not empty:
- 
- 	Find out the Node object in priority_queue with the minimum value of f
- 
- 	Extract it from the priority_queue and store it in NOb
- 
- 	If NOb.nodename == ‘G’:
-           break
-
- 	For every neighbor of NOb.nodename from adjacency_list
- 		Insert a new node in priority_queue with (nodename: neighbor_name, parent: NOb, g: NOb.g + edge_cost, h: H[NOb.nodename])
- 	Set NOb = None
+Finally centroid_old array holds the final cluster centroids and
+	label array holds the final assignments to clusters
 ```
+> The final plot should look similar to the following:
 
-## Part 4
+![image](https://github.com/TashinParvez/Artificial-Intelligence-UIU/assets/84122972/4327ea01-9891-4aff-908a-b5e6fe17c889)
 
-> ### Path Generation
-> path = []
-> 
-> cost = NOb.g
-> 
-> **while** NOb.parent is not None:
-> 
->> 	path.insert(**NOb**.**nodename**)
->> 
->> 	**NOb** = **NOb**.**parent**
-> 
-> **Reverse** the path list
-> 
-> Print the path and cost
->
 
-# Given code:
-```python
-
-adjacency_list = {
-    'S': [('A', 1), ('B', 4)],
-    'A': [('B', 2), ('C', 5), ('G', 12)],
-    'B': [('C', 2)],
-    'C': [('D', 2), ('G', 3)],
-    'D': [('G', 2), ('A', 2)],
-    'G': [('C', 4)]
-}
-
-H = {
-    'S': 7,
-    'A': 6,
-    'B': 2,
-    'C': 1,
-    'D': 1,
-    'G': 0
-}
-
-```
-
-# Solution : [LINK](https://github.com/TashinParvez/Artificial-Intelligence-UIU/blob/master/AI-Lab%20Assignments/ASSG%201%20-%20Sec-C__Spring24/011221437.py)
+# Solution : [LINK](https://github.com/TashinParvez/Artificial-Intelligence-UIU/blob/master/AI-Lab%20Assignments/ASSG%204%20-%20Kmeans%20Algorithm/tashin.py)
