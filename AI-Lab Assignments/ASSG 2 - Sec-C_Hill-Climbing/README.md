@@ -62,7 +62,7 @@ FINISH
 ```
 
 
-# Solution : [LINK](https://github.com/TashinParvez/Artificial-Intelligence-UIU/blob/master/AI-Lab%20Assignments/ASS%202%20-%20Sec-C_Hill-Climbing/Q1.py)
+# Solution : [LINK](https://github.com/TashinParvez/Artificial-Intelligence-UIU/blob/master/AI-Lab%20Assignments/ASSG%202%20-%20Sec-C_Hill-Climbing/Q1.py)
 
 ---
 
@@ -132,4 +132,4 @@ FINISH
 ```
 
 
-# Solution : [LINK](https://github.com/TashinParvez/Artificial-Intelligence-UIU/blob/master/AI-Lab%20Assignments/ASS%202%20-%20Sec-C_Hill-Climbing/Q2.py)
+# Solution : [LINK](https://github.com/TashinParvez/Artificial-Intelligence-UIU/blob/master/AI-Lab%20Assignments/ASSG%202%20-%20Sec-C_Hill-Climbing/Q2.py)
