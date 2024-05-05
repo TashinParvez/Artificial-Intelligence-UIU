@@ -53,4 +53,4 @@ Print the accuracy (Test)
 - numpy.argmin
 
 
-# Solution : [LINK](https://github.com/TashinParvez/Artificial-Intelligence-UIU/blob/master/AI-Lab%20Assignments/ASS%203%20-%20Sec-C_KNN/Tashin.py)
+# Solution : [LINK](https://github.com/TashinParvez/Artificial-Intelligence-UIU/blob/master/AI-Lab%20Assignments/ASSG%203%20-%20Sec-C_KNN/Tashin.py)
